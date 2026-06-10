@@ -1,79 +1,174 @@
-# Создайте папку static (если её нет)
-mkdir -p static
-
-# Создайте файл style.css
-cat > static/style.css << 'EOF'
-/* Основные стили для всей страницы */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+* {
     margin: 0;
-    padding: 20px;
-}
-
-/* Контейнер для центрирования контента */
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Заголовок страницы */
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-/* Стиль для одного сообщения */
-.message {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-}
-
-/* Имя автора */
-.message strong {
-    color: #007bff;
-}
-
-/* Дата сообщения */
-.message small {
-    color: gray;
-    font-size: 0.8em;
-}
-
-/* Блок с формой добавления сообщения */
-.add-form {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 2px solid #eee;
-}
-
-/* Поля ввода и текстовое поле */
-input,
-textarea {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0 15px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 0;
     box-sizing: border-box;
 }
 
-/* Кнопка отправки */
-button {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
 }
 
-/* Эффект при наведении на кнопку */
-button:hover {
-    background-color: #0056b3;
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 }
-EOF
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #555;
+    margin: 20px 0 15px 0;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 5px;
+}
+
+.counter {
+    background-color: #e9ecef;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.sort-links {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.sort-links a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.sort-links a:hover {
+    text-decoration: underline;
+}
+
+.message {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #667eea;
+    transition: transform 0.2s;
+}
+
+.message:hover {
+    transform: translateX(5px);
+}
+
+.message strong {
+    color: #333;
+    font-size: 1.1em;
+}
+
+.message small {
+    color: #666;
+    font-size: 0.85em;
+}
+
+.delete-btn {
+    float: right;
+    color: red;
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-left: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.delete-btn:hover {
+    color: darkred;
+    background-color: #ffeeee;
+}
+
+.message.fresh {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+}
+
+.message::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.delete-all-link {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.delete-all-btn {
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+}
+
+.delete-all-btn:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.add-form {
+    background: #f1f3f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: opacity 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.danger-btn {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.cancel-btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}

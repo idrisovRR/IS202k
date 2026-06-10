@@ -10,17 +10,30 @@
     <div class="container">
         <h1>📖 Гостевая книга</h1>
         
-        <h2>Сообщения</h2>
+        <p class="counter">📊 Всего сообщений: {{ total_count }}</p>
+        
+        <div class="sort-links">
+            <a href="/sort/newest">📅 Сначала новые</a> |
+            <a href="/sort/oldest">📅 Сначала старые</a>
+        </div>
+        
+        <h2>💬 Сообщения</h2>
+        
+        <div class="delete-all-link">
+            <a href="/delete-all" class="delete-all-btn">🗑️ Удалить все сообщения</a>
+        </div>
         
         {% if messages %}
             {% for msg in messages %}
-            <div class="message">
-                <strong>👤 {{ msg.name }}</strong> <small>📅 {{ msg.created_at }}</small>
+            <div class="message {% if msg.created_at[:10] == today %}fresh{% endif %}">
+                <strong>👤 {{ msg.name }}</strong> 
+                <small>📅 {{ msg.created_at[:10] }}</small>
+                <a href="/delete/{{ msg.id }}" class="delete-btn" onclick="return confirm('🗑️ Удалить сообщение от {{ msg.name }}?')">Удалить</a>
                 <p>{{ msg.message }}</p>
             </div>
             {% endfor %}
         {% else %}
-            <p>Пока нет сообщений. Будьте первым!</p>
+            <p>✨ Пока нет сообщений. Будьте первым!</p>
         {% endif %}
         
         <div class="add-form">
